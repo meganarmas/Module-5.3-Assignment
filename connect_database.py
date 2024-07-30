@@ -1,10 +1,11 @@
 import mysql.connector
 from mysql.connector import Error
 
+
 def connect_database():
-    db_name = "Managing_Fitness_Center"
+    db_name = "Gym_Database"
     user = "root"
-    password = "********"
+    password = "*****"
     host = "localhost"
 
     try:
