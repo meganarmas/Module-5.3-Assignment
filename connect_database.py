@@ -5,7 +5,7 @@ from mysql.connector import Error
 def connect_database():
     db_name = "Gym_Database"
     user = "root"
-    password = "*****"
+    password = "Calliepeg12!"
     host = "localhost"
 
     try:
@@ -17,11 +17,7 @@ def connect_database():
         )
         if conn.is_connected():
             print("Connected to MySQL database successfully.")
+            return conn
 
     except Error as e:
         print(f"Error: {e}")
-
-    finally:
-        if conn and conn.is_connected():
-            conn.close()
-            print("My SQL connection is closed.")

@@ -1,28 +1,29 @@
 from connect_database import connect_database
-import Error
 
-conn = connect_database
 
 # add members using the database - going off of a my.sql connector
 
-def add_members(id, name, age):
+def add_members():
+    conn = connect_database()
+    print(conn)
     if conn is not None:
         try:
+            print("testing")
             cursor = conn.cursor()
             new_member = ('Emma Swan', 105, 28)
 
-            query = "INSERT INTO Members (name, id, age) VALUES (%s, %s, %s)" (id, name, age)
+            query = "INSERT INTO Members (name, id, age) VALUES (%s, %s, %s)"
 
             cursor.execute(query, new_member)
             conn.commit()
             print("New Member added.")
 
-        except Error as e:
-            print(f"Error in adding new member: {e}")
+        except:
+            print(f"Error in adding new member.")
         finally:
             cursor.close()
             conn.close()
-
+add_members()
 
 
 # add a workout session
@@ -39,8 +40,8 @@ def add_workout_session(member_id, date, duration_minutes, calories_burned):
             conn.commit()
             print("New Workout Session has been added.")
 
-        except Error as e:
-            print(f"Error in updating workout session: {e}")
+        except:
+            print(f"Error in updating workout session")
 
         finally:
             cursor.close()
@@ -61,8 +62,8 @@ def update_member_age(member_id, age):
             conn.commit()
             print(f"Member {member_id} age updated.")
 
-        except Error as e:
-            print(f"Error updating Member age: {e}")
+        except:
+            print(f"Error updating Member age")
                     
         finally:
             cursor.close()
@@ -82,8 +83,29 @@ def delete_workout_session(session_id):
             conn.commit()
             print(f"Workout {session_id} deleted.")
 
-        except Error as e:
-            print(f"Error deleting workout session: {e}")
+        except:
+            print(f"Error deleting workout session.")
+
+        finally:
+            cursor.close()
+            conn.close()
+
+
+#task 1: SQL Between Usages
+
+def get_members_in_age_range(start_age, end_age):
+    if conn is not None:
+        try:
+            cursor = conn.cursor()
+            get_members = (25, 30)
+
+            query = "SELECT age FROM Members BETWEEN %s AND %s"
+            cursor.execute(query, start_age, end_age)
+            conn.fetchall()
+            print(f"Members in age range: {get_members}")
+
+        except:
+            print(f"Error.")
 
         finally:
             cursor.close()
