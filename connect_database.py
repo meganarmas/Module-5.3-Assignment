@@ -3,9 +3,9 @@ from mysql.connector import Error
 
 
 def connect_database():
-    db_name = "Gym_Database"
+    db_name = "Managing_Fitness_Center_Database"
     user = "root"
-    password = "hiddenpassword
+    password = "Calliepeg12!"
     host = "localhost"
 
     try:
@@ -15,9 +15,10 @@ def connect_database():
             password = password,
             host = host
         )
+
         if conn.is_connected():
             print("Connected to MySQL database successfully.")
             return conn
 
     except Error as e:
-        print(f"Error: {e}")
+        print(f"Error {e}")
