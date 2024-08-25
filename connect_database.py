@@ -5,7 +5,7 @@ from mysql.connector import Error
 def connect_database():
     db_name = "Managing_Fitness_Center_Database"
     user = "root"
-    password = "Calliepeg12!"
+    password = "********""
     host = "localhost"
 
     try:
